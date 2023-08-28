@@ -1,0 +1,59 @@
+[
+    {
+        "id": "bb23c30d1f6f8e39",
+        "type": "function",
+        "z": "2da08204b1e2e3cb",
+        "name": "function 1",
+        "func": "msg.payload = {\n    templatePath: \"D:\\\\temp\\\\template.xlsx\",\n    data: {\n        people: [\n            { name: \"John Smith\", age: 20 },\n            { name: \"Bob Johnson\", age: 22 }\n        ]\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "fs",
+                "module": "fs"
+            }
+        ],
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "dc475e9329f2178b"
+            ]
+        ]
+    },
+    {
+        "id": "b648b4bb4305e370",
+        "type": "file",
+        "z": "2da08204b1e2e3cb",
+        "name": "Output",
+        "filename": "D:\\\\temp\\\\output.xlsx",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "binary",
+        "x": 750,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc475e9329f2178b",
+        "type": "xlsx-template",
+        "z": "2da08204b1e2e3cb",
+        "wname": "",
+        "templatePath": "",
+        "sheetNumber": 1,
+        "outputType": "arraybuffer",
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "b648b4bb4305e370"
+            ]
+        ]
+    }
+]

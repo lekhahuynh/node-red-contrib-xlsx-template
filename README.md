@@ -6,7 +6,7 @@ Detailed information can be found in the build in info of each node
 
 ## Installation
 
-npm install node-red-contrib-xlsx-template
+npm install @lekhahuynh/nodered-xlsx-template
 
 
 # LICENSE
