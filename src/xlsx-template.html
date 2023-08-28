@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  const paletteLabel = "excel-render";
+  RED.nodes.registerType("xlsx-template", {
+    category: "Excel",
+    color: "#3FA037",
+    paletteLabel: paletteLabel,
+    defaults: {
+      wname: { value: "" },
+      templatePath: { value: "", required: false },
+      sheetNumber: { value: 1, required: false },
+      outputType: { value: "arraybuffer", required: true },
+    },
+    inputs: 1,
+    outputs: 1,
+    outputLabels: ["stdout"],
+    icon: "excel.png",
+    label: function () {
+      return this.wname || paletteLabel;
+    },
+  });
+</script>
+
+<script type="text/x-red" data-template-name="xlsx-template">
+    <div class="form-row">
+        <label for="node-input-wname"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-wname" placeholder="Name">
+    </div>
+  <div class="form-row">
+     	<label for="node-input-templatePath"><i class="fa fa-file"></i> Template Path</label>
+     	<input type="text" id="node-input-templatePath">
+  </div>
+  <div class="form-row">
+      <label for="node-input-issue-sheetNumber"><i class="fa fa-sitemap"></i> Sheet Number</label>
+      <input type="number" id="node-input-sheetNumber">
+  </div>
+  <!-- <div class="form-row">
+    <label for="node-input-issue-outputType"><i class="fa fa-sitemap"></i> Output Type</label>
+    <select name="outputType" id="node-input-outputType">
+      <option value="uint8array">Uint8Array</option>
+      <option value="arraybuffer">ArrayBuffer</option>
+      <option value="blob">Blob</option>
+      <option value="nodebuffer">Nodebuffer</option>
+      <option value="base64">Base64</option>
+    </select>
+  </div> -->
+</script>
+
+<script type="text/x-red" data-help-name="xlsx-template">
+  <p>Render excel from template file and data.</p>
+
+  <h3>Inputs</h3>
+     <dl class="message-properties">
+         <dt>payload.templatePath<span class="property-type">string</span></dt>
+         <dd> Is path of template. </dd>
+
+         <dt class="optional">payload.option <span class="property-type">object</span></dt>
+         <dd> </dd>
+
+         <dt class="optional">payload.sheetNumber <span class="property-type">number</span></dt>
+         <dd> Index of template sheet. Default is first sheet (1)</dd>
+
+         <!-- <dt class="optional">payload.outputType <span class="property-type">string</span></dt>
+         <dd> Response type of output.
+          You can pass options to generate() to set a different return type.
+          use {type: 'uint8array'} to generate a Uint8Array, arraybuffer, blob, nodebuffer to generate an ArrayBuffer,
+          Blob or nodebuffer, or base64 to generate a base64-encoded string.</dd> -->
+
+         <dt>payload.data<span class="property-type">object</span></dt>
+         <dd> Data is passed to a template to generate an output. </dd>
+     </dl>
+
+  <h3>Outputs</h3>
+     <dl class="message-properties">
+         <dt>payload
+             <span class="property-type">Object</span>
+         </dt>
+         <dd> Output payload is an object with type is outputType (default is Uint8Array)</dd>
+     </dl>
+</script>
